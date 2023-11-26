@@ -8,7 +8,7 @@ The repo is a paper implementation of [this paper](https://ieeexplore.ieee.org/d
 - We use publish-subscribe based messaging bus (Apache Kafka) for transferring the data. When the module detects a pattern and produces a warning, it publishes the warning message to a Kafka topic and transfers it through the Kafka message transmission channel. 
 - Consumed stats messages are analysed using Apache Flink, and instructions can be given to the end user to "upscale" or downscale" on the basis of these usages.
 
-![Image 1](images/arch.png) 
+![Image 1](images/arch.PNG) 
 
 ### Prequisities:
 - Installed Java JDK
@@ -79,7 +79,7 @@ In new cmd:
 python poster.py sensor1 docker_stats
 ```
 
-![Image 1](images/kafka.png)
+![Image 2](images/kafka.PNG)
 
 - Start Flink cluster:
 ```
@@ -88,4 +88,4 @@ bin/jobmanager.bat start
 
 - Check used resources and jobs in Flink for analytics.
 
-![Image 1](images/kafka.png)
+![Image 3](images/flink.png)
