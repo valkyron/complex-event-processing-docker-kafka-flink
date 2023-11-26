@@ -1,0 +1,30 @@
+build image:
+docker build -t sensor-image .
+
+from sensor image, make 3 containers:
+docker run -d --name sensor3 sensor-image 
+
+chweck logs (but the output at the end):
+docker logs -f sensor3
+
+
+KAFKA---------------
+
+start zookeeper in c:\kafka:
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties   
+
+start kafka in c:\kafka:
+.\bin\windows\kafka-server-start.bat .\config\server.properties 
+
+make topic:
+#bin/kafka-topics.sh --create --topic container-usage --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+kafka-topics.sh --create --zookeeper localhost:2181 --replication-factor 1 --partitions 1 --topic docker-stats
+
+consumer start listening:
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic docker_stats --from-beginning
+
+flink start:
+./bin/start-cluster.sh
+./bin/stop-cluster.sh
+6- Open Apache Flink web
+localhost:8081

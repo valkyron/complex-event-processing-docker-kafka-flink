@@ -1,0 +1,8 @@
+psutil==5.9.6
+# datetime
+requests
+# mysql.connector
+confluent_kafka
+kafka-python
+# docker
+kafka

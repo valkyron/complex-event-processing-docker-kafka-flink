@@ -1,0 +1,23 @@
+build image:
+docker build -t sensor-image .
+
+from sensor image, make 3 containers:
+docker run -d --name sensor3 sensor-image 
+
+chweck logs (but the output at the end):
+docker logs -f sensor3
+
+
+KAFKA---------------
+
+start zookeeper in c:\kafka:
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties   
+
+start kafka in c:\kafka:
+.\bin\windows\kafka-server-start.bat .\config\server.properties 
+
+make topic:
+bin/kafka-topics.sh --create --topic docker_stats2 --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
+
+consumer
+./bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic docker_stats2 --from-beginning
